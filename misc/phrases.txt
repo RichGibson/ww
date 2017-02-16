@@ -1,0 +1,48 @@
+Some phrases probably not in memrise
+
+
+Ich kann mir das stundenlang ansehen.
+
+aber das ist den einen Klick wert.
+Du hast gesagt, es wär den Klick wert!
+
+
+not a phrase, but I understood this first time except the last word
+which I assume is something like 'use'
+Das Baby schläft. Soll ich jetzt: essen, schlafen, arbeiten, Hausarbeit machen oder einfach meine Zeit auf Twitter verdaddeln?
+
+...
+Endlich. Ein Bier. Ich bin fast verdurstet.
+
+....
+der Kolben/die Kolben
+der Linearaktor
+das Solenoidventil
+der Luftreifen or die Pneumatik
+
+ich habe diesen Cocktail-Roboter gemacht.
+es heißt PistonBot.
+PistonBot bedeutet 'Kolben-Roboter' weil es vier Kolben hat.
+die Kolben sind Pneumatik-Linearaktor.
+sie werden durch ein Solenoidventil gestartet und durch einen Arduino kontrolliert.
+sie pumpen die Zutaten für die Cocktails, 
+und spritzen sie aus den Düsen
+...
+
+---
+The Piston Bot provides the opportunity to play with pneumatic control to generate a 
+cocktail accompanied with a musical interlude.  Using the latest developments in 
+electro-mechanical-pneumatic & tactile musical controls allows for an 
+exploration of the incremental value added to the cocktail production process by the 
+addition of musical accompanient.
+
+(You push buttons and things happen, liquids are dispensed and sounds created)
+
+Also includes blikenlights and a cocktail dispensed through a giant syringe.
+---
+
+controls enables electromechanical control of pneumatic 
+
+participle on verbs with -ieren suffix don't get ge- in the participle
+
+der Kolben oder der Schaft

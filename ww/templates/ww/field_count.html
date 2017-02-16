@@ -1,0 +1,52 @@
+        {% if field_lst %}
+            <thead>
+                <tr>
+                    <th>Field Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in field_lst %}
+                    <tr>
+                        <td><a href="/field_counts/{{ model }}/{{item}}">{{ item }}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+
+        {% if model_lst %}
+            <thead>
+                <tr>
+                    <th>Model</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in model_lst %}
+                    <tr>
+                        <td><a href="/field_counts/{{ item }}/">{{ item }}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+
+        {% if lst %}
+            <thead>
+                <tr>
+                    <th>Value</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in lst %}
+                <tr>
+                    {% if item.value %}
+                    <td><a href="/properties/{{ field_name}}/{{ item.value }}">{{ item.value }}</a> {{ item.get_FIELDNAME_display}}</td>
+                    {% else %}
+                        <td>&nbsp;(missing)</td>
+                    {% endif %}
+                    <td>{{ item.dcount }}</td>
+                        <!-- a href="/admin/ts/property/{ { item.id }}/change/">***&nbsp; -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+

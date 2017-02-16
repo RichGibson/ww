@@ -1,0 +1,9 @@
+die Eilmeldung,Breaking news
+beschweren,to complain,beschwert
+der Dienst,Service
+überwachen,check examine monitor,überwacht
+
+
+möglicherweise,:wq
+
+

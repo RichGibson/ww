@@ -1,0 +1,23 @@
+<!--{ % extends "base.html" %} -->
+
+<html>
+<head>
+    <link href="static/styles.css" rel="stylesheet" type="text/css">
+    <link href="{{STATIC_URL}}styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h1>This is home for some_app</h1>
+    schwartz in templates/ts/foobar.html
+    <br>
+    STATIC_URL: {{settings.STATIC_URL}}<Br>
+    MEDIA_ROOT: {{MEDIA_ROOT}}<Br>
+    id: {{ id }} <br>
+    p: {{ p.name }} <br>
+    {% for l in llst %}
+        l: {{ l.name }}<br>
+    {% endfor %}
+
+
+</body>
+</html>
+

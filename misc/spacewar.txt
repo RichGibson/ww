@@ -1,0 +1,76 @@
+(Frankie's thesis abstract.
+Spacewar!
+
+Zu den Anfängen der Heimcomputer, geboren aus Krieg und Spiel
+
+Von Franz Ablinger
+
+Der Anfang der Entwicklung elektronischer Computer ist schwer festzulegen. Ich definiere ihn mit 
+
+der Erfindung des Zählwerks. Eine elektromagnetische Uhr, die Impulse zählen konnte. Der 
+
+amerikanische Zensus von 1890 verwendete erstmals Lochkarten in industriellem Maßstab, um die 
+
+Bevölkerung Amerikas zu zählen und die mühevolle Zählarbeit auf einen Bruchteil des Aufwands 
+
+zu reduzieren.
+
+
+Repräsentation der Wirklichkeit durch Stellvertreter. Jede Person wurde auf eine Lochkarte 
+
+abgebildet und somit sortierbar, filterbar und zählbar – Menschen wurden zu Objekten.
+
+Eine logische Fortführung der Uniformierung, die den Krieg über Jahrtausende angetrieben hat: Krieger 
+
+mussten nun nicht mehr eingefangen werden wie Wildpferde; Menschen wurden direkt zugreifbar. 
+
+
+Das war der Beginn einer wechselseitigen Abhängigkeit von Krieg und Computer, die bis heute 
+
+andauern sollte. 
+
+
+here...
+
+
+Aber die Zählkünste der frühen Maschinen wurden zunächst hauptsächlich zur 
+
+Verwaltung von Zahlen eingesetzt. Über die 1920er und 1930er Jahre hinweg wurden aus 
+
+elektromechanischen Addierwerken komplexere Rechenoperationen entwickelt3 – es gab somit
+
+zwei Klassen von Maschinen: die reinen Buchhaltungsmaschinen, gebaut für die maschinelle 
+
+Verarbeitung von Zahlengebirgen einerseits und die Kalkulationsmaschinen, gebaut für höhere 
+
+Mathematik und Gleitkommaoperationen. Im Zweiten Weltkrieg waren erste programmgesteuerte 
+
+elektromechanische Rechenwerke im Einsatz. Sie erleichterten die mühevolle händische
+
+Berechnung von ballistischen Schuss- und Flugtabellen, die Ver- und vor allem die Entschlüsselung 
+
+von Nachrichten sowie die Ermittlung der Zerfallsraten von Atomkernen für die den Krieg letztlich 
+
+entscheidenden Atomwaffen. Die Technologie wurde rasch in Richtung Elektronik vorangetrieben. 
+
+Das Deutsche Reich konnte nach Ansicht Großbritanniens und Amerikas nur im Hinterland 
+
+wirksam bekämpft werden; Luftschläge sollten die Wende herbeiführen. Sie wurden von den 
+
+Britischen Inseln aus gestartet, aber etwa 20% der Kampfflugzeuge der Alliierten gingen bei jedem 
+
+dieser Einsätze verloren. Der Zweite Weltkrieg war der erste elektronische Krieg, denn die 
+
+Alliierten erkannten rasch, dass ihre hohe Verlustrate an Luftfahrzeugen auf eine neue Technologie 
+
+der Deutschen zurück zu führen war: das Radar. Ein ruinöses Wettrüsten begann, mit dem Ziel, die 
+
+Hoheit über den Äther zu erlangen. In den Vereinigten Staaten entstanden streng geheime Labors, 
+
+die sich mit der Entwicklung von Radar und wirksamen Gegenmaßnahmen befassten. Südlich von 
+
+San Francisco entstand das „Radar Valley“. Diese Labors legten die Grundlage für das, was später 
+
+„Silicon Valley“ genannt werden sollte4
+
+(incomplete)

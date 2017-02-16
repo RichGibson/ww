@@ -1,0 +1,57 @@
+
+Things I don't like...
+-when revieweing difficult words there is no link to edit the database
+(from the web. There is a link when you are in normal planting or watering.)
+
+-mobile app has no edit or ignore capability
+-lost a streak when the mobile app didn't update
+-what is 'today' Time zone issue, plus a lot of lag in new learning
+being added
+
+-last '24 hours' is not actually the last 24 hours.
+- in web app, the progress bar is non linear. If you missed words it
+will make you get them right, or something, so the progress bar maxes
+out and you have an unknown number of words still to do. Sometimes this
+has been enormously enormously frustrating.
+
+-would like a 'flag this word' to make something...
+
+-I'm fuzzy on what I want, but tools to make it easier to build a 
+composite list of all of your courses.
+
+-there is an auto ignore somewhere...
+-a graph of items would be cool.
+-on performance monitor in the legend add (current: nnn) next to
+words in long term memory and words forgotten.
+
+Memrise...
+
+
+Thu Oct 16 15:49:12 CEST 2014
+bill: they are doing a biopsy on his kidney, so he has to be 
+off of a blood thinner, which is an issue. Today they go to 
+a cardiologist, hopefully that dr. can let them know what treatment
+he might be able to take. An enzyme inhibitor which would slow the
+cancer, it might buy him a year. except for the swelling he is not
+in any pain. He is living in a very good place.
+
+Molly has been amazing with him.
+
+1198? pin
+amex 1198?
+4254
+
+
+uprise is an app which works with memrise to edit courses.
+It is cool.
+
+the database is sqlite3 it is in 
+/Library/Application Support/Uprise/Data/Uprise.sqlite
+
+Liya is a useful tool for database exploration.
+
+select zrow,zindex, zvalue from zdbentry where zrow=650 order by zrow, zindex;
+
+And the umlauts and s sett's are maintained so yay.
+
+

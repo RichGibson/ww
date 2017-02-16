@@ -1,0 +1,32 @@
+<!-- search.html is a list of fields and you can search. -->
+
+{% extends "base.html" %}
+
+
+{% block title %} 
+  <div class="schwartz_content">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+    {{ title }}
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="schwartz_content">
+    <script>
+        $(document).ready(function() {
+            $('#data').DataTable();
+        } );
+    </script>
+
+    <table id="data" class="display table table-striped table-bordered" cellspacing="0" width="100%">
+        (no include){ % include includepage %}
+        <!-- with an add filter  
+        { % with template_name=includepage|stringformat:"s"|add:".html" %}
+            { % include template_name %}
+        { % endwith %}
+        -->
+    </table>
+  </div>
+{% endblock %}

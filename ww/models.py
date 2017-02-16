@@ -1,0 +1,51 @@
+from __future__ import unicode_literals
+import sys
+import re
+import pdb
+from django.db import models
+from django.utils import timezone
+ 
+from django.utils.translation import ugettext_lazy as _
+
+class Word(models.Model):
+    word = models.CharField(max_length=255, blank=True)
+    plural = models.CharField(max_length=255, blank=True)
+    article = models.CharField(max_length=3, blank=True)
+    notes = models.TextField(blank=True, null=True)
+    created_date = models.DateTimeField(default=timezone.now)
+    updated_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.word.encode('utf8')
+
+
+class SourceType(models.Model):
+    sourcetype = models.CharField(max_length=25, null=True, blank=True)
+    notes = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.sourcetype
+
+class Source(models.Model):
+    name = models.CharField(max_length=255, blank=True)
+    source_type = models.ForeignKey("sourcetype", null=True, )
+
+    notes = models.TextField(blank=True, null=True)
+    fulltext = models.TextField(blank=True, null=True)
+    created_date = models.DateTimeField(default=timezone.now)
+    updated_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+class WordSource(models.Model):
+    word = models.ForeignKey("word", null=True, )
+    source = models.ForeignKey("source", null=True, )
+
+    def __str__(self):
+        return "%s - %s" % (self.word, self.source)
+ 
+
+
+
+

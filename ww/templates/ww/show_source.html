@@ -1,0 +1,43 @@
+<!-- List the words in one source, or list sources -->
+
+{% extends "base.html" %}
+
+
+{% block title %} 
+  <div class="ww_content">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+    {{ title }} 
+  </div>
+{% endblock %}
+
+{% block content %}
+  <h1>{{title}}</h1>
+  <div class="ww_content">
+    <script>
+        $(document).ready(function() {
+            $('#data').DataTable( {
+                "pageLength": 50
+            });
+        } );
+    </script>
+
+    Source: {{ source }}
+    <table id="data" class="display table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <td>source</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for f in lst %}
+            <tr>
+                <td><a href="/show_word/{{ f.id }}">{{ f.word }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+  </div>
+{% endblock %}

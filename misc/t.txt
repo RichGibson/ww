@@ -1,0 +1,88 @@
+der Apfel die Äpfel
+der Bär |bear
+der Durst   |thirst
+der Hund
+der Insekt
+der Kaffee 
+der Käse    |cheese
+der Saft    |juice
+der Vogel   |bird
+der Fisch die Fische
+die Biene   |bee
+die Ente    |duck
+die Fliege  |fly 
+die Katze   |cat
+die Kartoffel 
+die Kuh |cow
+die Maus
+die Menschen    |humans/mankind
+die Orange
+die Suppe
+die Tomate das Tomaten
+die Zeitung
+die Zitrone |lemon
+das Abendessen
+das Bier
+das Buch die Bücher
+das Ei die Eier
+das Essen   |food
+das Felisch |meat
+das Frühstück    | breakfast
+das Gemüse  |vegetables
+das Haustier    |pet, house animal. 
+das Kind der Kinder
+das Mädchen
+das Käuzchen    |the little owl...bar in Wien
+das Pferd   |horse
+das Salz    |salt
+das Tier    |the animal
+das Wasser
+
+schmecken   |taste
+zeigen  |show
+
+das Mädchen die Mädchen
+alt old
+einfach |easy/simple/just
+fertig  | ready
+fest    |tight 
+frei    |free
+früh    |early (like frühstück
+gemeinsam   |together
+genau   |exact/precisely
+gesund  |healthy
+hoch    |high
+interessant |interesting
+kalt    |cold
+klar    |clear
+kurz    |short/brief
+langsam |slow
+links   |left
+möglich |possible
+muss    |must
+neu |new/novel
+normal  |normal
+nützlich    |useful
+perfekt |perfect
+positiv |positive
+praktisch   |practically
+richtig |right
+riesig  |huge
+rund    |round
+satt    |full/satisfied
+schlect |bad/weak/wicked
+schnell |quickly
+schön   |pretty
+schon   | still/already umlauts matter
+schwer  |heavy, difficult
+stark   |strong/powerful/potent
+stück   |item
+teuer   |expensive
+toll    |great
+voll    |full
+wahrscheinlich|probably, probably, likely
+weiss   |white
+wichtig |important
+Hübscher Bursche    |pretty/handsome boy/fellow/lad
+ich habe schon einmal überlegt  | I have thought about/considered
+Willcommen  |welcome

@@ -1,0 +1,31 @@
+.header
+{
+    background-color: black;
+    padding-left: 5px;
+    padding-top:5px !important; padding-bottom:5px !important;
+}
+.nav_ww
+{
+    #color: red !important;
+    #background-color: black;
+    padding-left: 15px;
+    padding-right: 25px;
+}
+
+
+.navbar-nav > li > a, .navbar-brand  {
+    padding-top:5px !important; padding-bottom:0 !important;
+    height: 30px;
+}
+.navbar {min-height:30px !important;}
+
+.navbar-text
+{
+    color: red !important;
+}
+
+.ww_content
+{
+    padding-left: 15px;
+    padding-right: 15px;
+}
