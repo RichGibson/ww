@@ -25,12 +25,12 @@ def list_source(request, source=None):
 
 def show_source(request, source=None):
     """ Detail on one source and its' words """
-    title = "Show Source ", source
     lst = []
     slst = Source.objects.filter(id = source)
     lst = WordSource.objects.filter(source=source)
     # select ww_word.word, count(*) as cnt from ww_word, ww_wordsource where ww_word.id=ww.wordsource.word_id and ww_wordsource.source_id=10 group by word order by cnt desc;
     source=slst[0].name
+    title = "Show ", source
     return render(request, 'ww/show_source.html', {"title":title, "lst":lst, "source":source})
 
 def add_source(request):

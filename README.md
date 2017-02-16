@@ -9,11 +9,23 @@ docker-compose run web python manage.py createsuperuser
 
 MVP:
 1. Enter source info, and paste text or upload file and get a source with words.
-2. source list - one source
-2. source list - list all sources.
+(currenty 'works' via command line)
+
+works 2. source list - one source
+works 3. source list - list all sources.
+
+
 
 Tasks:
--unicode issues with import/insert into db
+
+-lives of others.srt appears to be latin-1, others are utf-8 fuck.
+-unicode issues with import/insert into db-sort of works, 
+-need word view
+-noun version, article noun(ending) do the right thing.
+
+-users
+-check boxes! for 'ignore' and 'know'
+-add number of words per source to list_sources
 
 
 

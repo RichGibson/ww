@@ -5,72 +5,31 @@
 
 # to run:
 # docker-compose run web python data_word.py
-
 import os, sys, re
 import csv
 import django
 import pdb
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ww.settings")
-django.setup()
+
+
 import codecs
 import operator
 
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ww.settings")
+django.setup()
 
 from django.conf import settings
 from ww.models import Word, Source, SourceType, WordSource
 
-def fixValue(key, val):
-    """
-    take a value, fix it/reformat whatever needed.
-    """
-
-    key = key.lower()
-    #print "fixValue key: %s val: %s " % (key, val)
-
-    # remove (None none) only at start of string
-    if re.match('none', val, re.IGNORECASE):
-        val = ''
-
-    # remove Unknown
-    if re.match('unknown', val, re.IGNORECASE):
-        val = ''
-
-    # remove N/A NA, only at start of string
-    if re.match('^N/?A$', val, re.IGNORECASE):
-        val = ''
-
-    # cities that have 'Berkeley, CA'
-    m = re.match('Berk', val)
-    if m:
-        val = "Berkeley"
-
-    if key == 'property_type':
-        #outfile.write("%r\n" % val)
-        (val,foo) = Property.propertyTypeFromString(val)
-        #print "property type for %s = %r" % (key, val)
-
-
-    return val
-
-def add_words(line, words):
-    """ add the words in line to the dict words """ 
-    for word in line.split():
-        if re.search('ffne', line):
-            print "word %s" % (word.encode('ascii','ignore'))
-            # sys.exit(2)
-        if word in words.keys():
-            words[word] = words[word]+1
-        else:
-            words[word] = 1
-
 
 
 def clean_line(line):
-    if re.search('[a..zA..Z]', line):
-        line = line
-    else:
-        line = ''
+
+    #if re.search('[a..zA..Z]', line):
+    #    line = line
+    #else:
+    #    line = ''
+
     line=re.sub('\.','',line)
     line=re.sub('"','',line)
     line=re.sub("!",'',line)
@@ -84,9 +43,33 @@ def clean_line(line):
     line=re.sub('“','',line)
     line=re.sub('„','',line)
     line=re.sub('…','',line)
-    line= line.lower()
+    #line= line.lower()
 
     return line
+
+def saveWords(words):
+    """
+    """
+    w = Word()
+    w.word = word
+    w.save()
+    ws = WordSource()
+    ws.source = s
+    ws.word = w
+    ws.save()
+
+def isWord(word):
+    """
+    is this a word?
+    """
+    #todo: this doesn't work, mögen doesn't fucking match.
+    if re.search('[A..Za..zßüÜöÖäÄ]', word, re.UNICODE):
+        return True
+    else:
+        print "not a word? ", word
+        pdb.set_trace()
+        return False
+
 
 
 def loadWordFile(file):
@@ -95,42 +78,83 @@ def loadWordFile(file):
     """
     cnt = 0
 
-    f = codecs.open(file, 'r', 'ISO-8859-1')
-    lines = f.readlines()
+    print "loadWordFile: ", file
+
+    # lives of others is latin-1, other files are utf-8.
+    try:
+        f = codecs.open(file, 'r', 'utf-8')
+        lines = f.readlines()
+    except:
+        print "utf-8 failed"
+        f = codecs.open(file, 'r', 'latin-1')
+        lines = f.readlines()
+
+    print "do we have lines?", lines
+    # this worked for a lot of files
+    #f = codecs.open(file, 'r', 'utf-8')
+    #f = codecs.open(file, 'r', 'ISO-8859-1')
+
     s=Source()
     s.fulltext="".join(lines)
     s.notes = "imported by data_word.py"
     s.name=file
     s.save()
 
+    #words = set()
+    words = {}
     for line in lines:
-        print "line", line
-        #AddProperty(row, file)
-        line = clean_line(line)
+        if len(line) > 0:
+            #print "    line: ", line
+            print "line start: ", line
+            line = clean_line(line)
+            print "line clean: ", line
+            pass
+
         if len(line) > 0:
             for word in line.split():
-                if re.search('ffne', line):
-                    print "word %s" % (word.encode('ascii','ignore'))
-                    # sys.exit(2)
-                #print "\t%s : %s " % (file, word)
-                print word
-                w = Word()
-                w.word = word
-                w.save()
-                ws = WordSource()
-                ws.source = s
-                ws.word = w
-                ws.save()
+                #print "--"
+                #print type(word)
+                #print "(raw) word: %r " % (word)
+                #print "(%% s) word: %s " % (word)
+                #print "unicode_escape : ", word.encode("unicode_escape")
+                #print "encode utf-8: ", word.encode("utf-8")
+
+                if not isWord(word):
+                    continue
+
+                if word in words:
+                    words[word] += 1
+                else:
+                    words[word] = 1
+
         cnt+=1
     f.close()
+
+    print "adding words"
+    print words.keys()
+    for word in words.keys():
+        print "adding ", word
+        w = Word()
+        w.word = word
+        w.save()
+
+        ws = WordSource()
+        ws.source = s
+        ws.word = w
+        ws.cnt = words[word]
+        ws.save()
+
+    return words
 
 
 ####################################
 # delete
 
+Word.objects.all().delete()
 try:
     Word.objects.all().delete()
     Source.objects.all().delete()
+    WordSource.objects.all().delete()
     pass
 except:
     print "delete failed!"
@@ -140,15 +164,22 @@ except:
 ####################################
 
 data_files = [
-        'misc/besser_gehts_nicht.txt',
-        'misc/99_luftballons.txt',
+        'misc/test.txt',
+        'misc/test_lives.srt',
+        #'misc/lives_of_others.srt',
+        #'misc/besser_gehts_nicht.txt',
+        #'misc/99_luftballons.txt',
         #'misc/spacewar.txt',
-        'misc/sie_mögen_sich.txt',
+        #'misc/sie_mögen_sich.txt',
+        #'misc/harrypotter.txt',
+        #'misc/lola_rentt.txt',
         ]
 
 for file in data_files:
-    print "Loading file: ", file
-    loadWordFile(file)
+    #print "-" * 40
+    #print "Loading file: ", file
+    words=loadWordFile(file)
+
 
 print "-" * 40
 print "all done"

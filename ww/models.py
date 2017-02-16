@@ -36,14 +36,16 @@ class Source(models.Model):
     updated_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return self.name.encode('utf8')
 
 class WordSource(models.Model):
     word = models.ForeignKey("word", null=True, )
     source = models.ForeignKey("source", null=True, )
+    cnt = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
-        return "%s - %s" % (self.word, self.source)
+        return "wordsource"
+        #return "%s - %s" % (self.word, self.source.name.encode('utf8'))
  
 
 
