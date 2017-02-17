@@ -22,6 +22,8 @@ from django.conf import settings
 from ww.models import Word, Source, SourceType, WordSource
 
 
+import enchant
+d=enchant.Dict('de_DE')
 
 def clean_line(line):
 
@@ -43,6 +45,7 @@ def clean_line(line):
     line=re.sub('“','',line)
     line=re.sub('„','',line)
     line=re.sub('…','',line)
+    line=re.sub('\|',' ',line)
     #line= line.lower()
 
     return line
@@ -63,13 +66,27 @@ def isWord(word):
     is this a word?
     """
     #todo: this doesn't work, mögen doesn't fucking match.
-    if re.search('[A..Za..zßüÜöÖäÄ]', word, re.UNICODE):
-        return True
-    else:
-        print "not a word? ", word
-        pdb.set_trace()
-        return False
 
+    flag = False
+    # do we have any (non special) letters?
+    if re.search('[A..Za..z]',word, re.UNICODE):
+        flag=True
+       
+    # does enchant think it is a word? This doesn't work for names...
+    # so maybe it is the right thing?
+    if d.check(word):
+        flag=True
+
+    if re.match("([\d]+)$", word):
+        flag=False
+
+    if not flag:
+        #i = codecs.open(file, 'r', 'latin-1')
+        #lines = f.readlines()
+        print "not a word? ", word
+        #pdb.set_trace()
+
+    return flag
 
 
 def loadWordFile(file):
@@ -88,6 +105,9 @@ def loadWordFile(file):
         print "utf-8 failed"
         f = codecs.open(file, 'r', 'latin-1')
         lines = f.readlines()
+
+    #f = codecs.open(file, 'r', 'latin-1')
+    #lines = f.readlines()
 
     print "do we have lines?", lines
     # this worked for a lot of files
@@ -134,7 +154,11 @@ def loadWordFile(file):
     print words.keys()
     for word in words.keys():
         print "adding ", word
-        w = Word()
+        w = Word.objects.filter(word=word)
+        if len(w)>0:
+            w = w[0]
+        else:
+            w=Word()
         w.word = word
         w.save()
 
@@ -164,15 +188,15 @@ except:
 ####################################
 
 data_files = [
-        'misc/test.txt',
-        'misc/test_lives.srt',
+        #'misc/test.txt',
+        #'misc/test_lives.srt',
         #'misc/lives_of_others.srt',
-        #'misc/besser_gehts_nicht.txt',
-        #'misc/99_luftballons.txt',
-        #'misc/spacewar.txt',
-        #'misc/sie_mögen_sich.txt',
-        #'misc/harrypotter.txt',
-        #'misc/lola_rentt.txt',
+        'misc/besser_gehts_nicht.txt',
+        'misc/99_luftballons.txt',
+        'misc/spacewar.txt',
+        'misc/sie_mögen_sich.txt',
+        'misc/harrypotter.txt',
+        'misc/lola_rentt.txt',
         ]
 
 for file in data_files:

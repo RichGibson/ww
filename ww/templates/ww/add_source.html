@@ -22,6 +22,16 @@
         } );
     </script>
 
-    <a href="/field_counts/{{ model }}">Field Count index for model {{ model }}</a>
+    <form method="post" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save bnt bnt-default">Save</a>
+    {{ form.id }}
+    <!-- ul>
+        <li>name: {{ form.name }}</li>
+        <li>what is it? {{ form.source_type }}</li>
+        <li>your notes: {{ form.notes }}</li>
+        <li>paste the thing: {{ form.fulltext }}</li>
+    </ul -->
+    </form>
   </div>
 {% endblock %}

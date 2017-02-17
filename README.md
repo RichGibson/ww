@@ -18,9 +18,12 @@ works 3. source list - list all sources.
 
 Tasks:
 
--lives of others.srt appears to be latin-1, others are utf-8 fuck.
--unicode issues with import/insert into db-sort of works, 
--need word view
+unicode sort of works now. total hack
+    -lives of others.srt appears to be latin-1, others are utf-8 fuck.
+    -unicode issues with import/insert into db-sort of works, 
+
+have now-need word view
+-need word lookup, enter a word and get word view.
 -noun version, article noun(ending) do the right thing.
 
 -users
