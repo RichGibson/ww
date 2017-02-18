@@ -9,10 +9,12 @@ from django.db.models import F
 from django.apps import apps
 from django.forms import ModelForm
 
+from django.http import HttpResponseRedirect
+
 import enchant
 d=enchant.Dict('de_DE')
 
-from ww.models import Word, Source, SourceType, WordSource
+from ww.models import Word, Source, SourceType, WordSource, Sentence, WordSentence
 import sys
 import re
 
@@ -25,7 +27,8 @@ class AddSourceForm(ModelForm):
 
 
 def home(request):
-    return render(request, 'ww/home.html', {})
+    lst = WordSource.objects.all().order_by('-cnt')[0:25]
+    return render(request, 'ww/home.html', {'lst':lst})
 
 def list_source(request, source=None):
     """ list of sources """
@@ -161,6 +164,8 @@ def add_source(request):
         if form.is_valid():
             source = form.save()
             loadWords(source)
+            title = "You added a source...yay for you!"
+            return HttpResponseRedirect('show_source/%i' % source.id, {"title":title,  "lst":lst})
     else:
         form  = AddSourceForm()
 
@@ -168,11 +173,15 @@ def add_source(request):
 
 def show_word(request, word=None):
     """ Detail on one word """
-    lst = []
-    lst = WordSource.objects.filter(word=word)
+    word_lst = []
+    word_lst = WordSource.objects.filter(word=word)
+    sentence_lst = []
+    sentence_lst = WordSentence.objects.filter(word=word)
+    # todo: maybe need a SentenceSource link
+    # oh, also, I don't need to write this WordSentence type models - it is a many to many deal.
     title = "Show ", word
     word = Word.objects.filter(id=word)[0].word
-    return render(request, 'ww/show_word.html', {"title":title, "lst":lst, "word":word})
+    return render(request, 'ww/show_word.html', {"title":title, "word_lst":word_lst,"sentence_lst":sentence_lst, "word":word})
 
 #@login_required
 def field_search(request, model):

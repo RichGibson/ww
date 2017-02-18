@@ -33,7 +33,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for f in lst %}
+            {% for f in word_lst %}
             <tr>
                 <td><a href="/show_source/{{ f.source.id }}">{{ f.source }}</a></td>
                 <td><a href="/show_source/{{ f.source.id}}">{{ f.cnt }}</a></td>
@@ -41,6 +41,12 @@
             {% endfor %}
         </tbody>
     </table>
+    <h2>Sentences Using {{ word }}</h2>
+    <ul>
+        {% for f in sentence_lst %}
+        <li> {{ f.sentence }} <a href="http://translate.google.com/#de/en/{{ f.sentence }}" target="_new"><img src="http://google.com/favicon.ico" width="22" height="22"></a> 
+        {% endfor %}
+    </ul>
 
   </div>
 {% endblock %}

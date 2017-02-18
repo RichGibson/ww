@@ -4,10 +4,20 @@ from django.urls import reverse
 #import django.forms 
 from django.forms import ModelForm
 
-from .models import Word, Source, SourceType, WordSource
+from .models import Word, Source, SourceType, WordSource, Sentence, WordSentence
 
 @admin.register(Word)
 class WordAdmin(admin.ModelAdmin):
+    #list_display = ( [f.name for f in Word._meta.get_fields()] )
+    pass
+
+@admin.register(Sentence)
+class SentenceAdmin(admin.ModelAdmin):
+    #list_display = ( [f.name for f in Word._meta.get_fields()] )
+    pass
+
+@admin.register(WordSentence)
+class WordSentenceAdmin(admin.ModelAdmin):
     #list_display = ( [f.name for f in Word._meta.get_fields()] )
     pass
 

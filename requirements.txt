@@ -7,3 +7,4 @@ docutils==0.13.1
 #Pillow==4.0.0
 #django-photologue==3.6
 pyenchant==1.6.8
+Pattern==2.6

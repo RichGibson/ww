@@ -9,7 +9,12 @@ docker-compose run web python manage.py createsuperuser
 
 MVP:
 1. Enter source info, and paste text or upload file and get a source with words.
-(currenty 'works' via command line)
+(currenty 'works'
+--improve the isWord check - it is rejecting things which look like valid
+words to me.
+--don't create duplicate Source
+--probably need more than just one 'name' - what about web pages, assume
+we want title, description, maybe url?
 
 works 2. source list - one source
 works 3. source list - list all sources.

@@ -27,12 +27,16 @@
         <thead>
             <tr>
                 <td>source</td>
+                <td>type</td>
+                <td>date added</td>
             </tr>
         </thead>
         <tbody>
             {% for f in lst %}
             <tr>
                 <td><a href="/show_source/{{ f.id }}">{{ f.name }}</a></td>
+                <td><a href="/show_source/{{ f.id }}">{{ f.source_type }}</a></td>
+                <td><a href="/show_source/{{ f.id }}">{{ f.created_date }}</a></td>
             </tr>
             {% endfor %}
         </tbody>

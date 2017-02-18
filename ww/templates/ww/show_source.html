@@ -25,23 +25,21 @@
 
     <!-- Source: {{ source }} -->
     <a href="#fulltext">Jump to full text of this source</a>
-    <table id="data" class="display table table-striped table-bordered" cellspacing="0" width="100%">
+    <table id="data" class="display table table-striped table-bordered foobar" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <td>links</td>
-                <td>id</td>
-                <td>count</td>
-                <td>word</td>
+                <!-- td>links</td -->
+                <td class="foo">word</td>
+                <td class="foo">count</td>
             </tr>
         </thead>
         <tbody>
             {% for f in lst %}
             <tr>
                 <td><a href="http://dict.leo.org/#/search={{ f.word }}&searchLoc=0&resultOrder=basic&multiwordShowSingle=on" target="_new"><img src="http://dict.leo.org/img/favicons/ende-929f8e10.ico"></a>
-                    <a href="http://translate.google.com/#de/en/{{ f.word }}" target="_new"><img src="http://google.com/favicon.ico" width="22" height="22"></a></td>
-                <td>{{ f.id }}</td>
+                    <a href="http://translate.google.com/#de/en/{{ f.word }}" target="_new"><img src="http://google.com/favicon.ico" width="22" height="22"></a>
+                <a href="/show_word/{{ f.word.id }}">{{ f.word }}</a></td>
                 <td><a href="/show_word/{{ f.word.id }}">{{ f.cnt }}</a></td>
-                <td><a href="/show_word/{{ f.word.id }}">{{ f.word }}</a></td>
             </tr>
             {% endfor %}
         </tbody>

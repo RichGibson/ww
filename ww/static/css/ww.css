@@ -4,6 +4,24 @@
     padding-left: 5px;
     padding-top:5px !important; padding-bottom:5px !important;
 }
+
+.foobar {
+    width: 50% !important;
+}
+.foo {
+    white-space: nowrap;
+    width: 1%;
+    color: red !important;
+}
+
+.table td.fit, td 
+.table th.fit, th {
+    white-space: nowrap;
+    width: 1%;
+    color: !important red;
+}
+
+
 .nav_ww
 {
     #color: red !important;

@@ -9,7 +9,8 @@ import os, sys, re
 import csv
 import django
 import pdb
-
+import string
+import pattern.de
 
 
 import codecs
@@ -19,7 +20,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ww.settings")
 django.setup()
 
 from django.conf import settings
-from ww.models import Word, Source, SourceType, WordSource
+from ww.models import Word, Source, SourceType, WordSource, Sentence, WordSentence
 
 
 import enchant
@@ -88,8 +89,7 @@ def isWord(word):
 
     return flag
 
-
-def loadWordFile(file):
+def XloadWordFile(file):
     """
     Reads a file and loads it into the Word model
     """
@@ -171,6 +171,81 @@ def loadWordFile(file):
     return words
 
 
+def loadWordFile(file):
+    """
+    Reads a file and loads it into the Word model
+    """
+    cnt = 0
+    print "loadWordFile: ", file
+
+    # lives of others is latin-1, other files are utf-8.
+    try:
+        f = codecs.open(file, 'r', 'utf-8')
+        raw = f.read()
+    except:
+        print "utf-8 failed"
+        f = codecs.open(file, 'r', 'latin-1')
+        raw = f.read()
+
+    print "do we have raw?", raw[0:100], "..."
+
+    s=Source()
+    s.fulltext="".join(raw)
+    s.notes = "imported by data_word.py"
+    s.name=file
+    s.save()
+
+    lst = pattern.de.parse(raw)
+    cnt=1
+    word_lst = {}
+    for sent in pattern.de.split(lst):
+        st=sent.string
+        st=re.sub(" ([!?,.])",r'\1',st)
+
+        sentence=Sentence()
+        sentence.sentence=st
+        sentence.save()
+        words = sent.string.split()
+        print sentence
+        for word in words:
+            print "\tadding word ", word
+            # is this a word?
+            word = word.strip(string.punctuation)
+            if len(word) == 0:
+                continue
+            w = Word.objects.filter(word=word)
+            if len(w)>0:
+                w = w[0]
+            else:
+                w=Word()
+            w.word = word
+            w.save()
+            if word in word_lst:
+                word_lst[word]['cnt'] +=1
+            else:
+                word_lst[word] = {'id':w, 'cnt':1}
+
+            wsent = WordSentence()
+            wsent.sentence = sentence
+            wsent.word = w
+            wsent.save()
+
+            cnt+=1
+
+    for word in word_lst:
+        ws = WordSource()
+        ws.source = s
+        ws.word = word_lst[word]['id']
+        ws.cnt = word_lst[word]['cnt']
+        ws.save()
+
+
+    f.close()
+    return
+
+    return words
+
+
 ####################################
 # delete
 
@@ -179,6 +254,8 @@ try:
     Word.objects.all().delete()
     Source.objects.all().delete()
     WordSource.objects.all().delete()
+    Sentence.objects.all().delete()
+    WordSentence.objects.all().delete()
     pass
 except:
     print "delete failed!"
@@ -191,12 +268,13 @@ data_files = [
         #'misc/test.txt',
         #'misc/test_lives.srt',
         #'misc/lives_of_others.srt',
+        'misc/kippen.txt',
         'misc/besser_gehts_nicht.txt',
         'misc/99_luftballons.txt',
         'misc/spacewar.txt',
         'misc/sie_mögen_sich.txt',
         'misc/harrypotter.txt',
-        'misc/lola_rentt.txt',
+        #'misc/lola_rentt.txt',
         ]
 
 for file in data_files:

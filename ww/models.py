@@ -18,6 +18,25 @@ class Word(models.Model):
     def __str__(self):
         return self.word.encode('utf8')
 
+class Sentence(models.Model):
+    sentence = models.TextField(blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
+    created_date = models.DateTimeField(default=timezone.now)
+    updated_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.sentence.encode('utf-8')
+
+
+class WordSentence(models.Model):
+    word = models.ForeignKey("word", null=True, )
+    sentence = models.ForeignKey("sentence", null=True, )
+
+    def __unicode__(self):
+        w = self.word.word
+        s = self.sentence.sentence
+        return w+": "+s
+        #return "%s: %s" % (w.encode('utf-8'),s.encode('utf-8'))
 
 class SourceType(models.Model):
     sourcetype = models.CharField(max_length=25, null=True, blank=True)
