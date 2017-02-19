@@ -14,7 +14,9 @@ from django.http import HttpResponseRedirect
 import enchant
 d=enchant.Dict('de_DE')
 
-from ww.models import Word, Source, SourceType, WordSource, Sentence, WordSentence
+from ww.models import Word, Source, SourceType, WordSource
+from ww.models import Sentence, WordSentence, UserWord
+
 import sys
 import re
 
@@ -29,6 +31,10 @@ class AddSourceForm(ModelForm):
 def home(request):
     lst = WordSource.objects.all().order_by('-cnt')[0:25]
     return render(request, 'ww/home.html', {'lst':lst})
+
+def about(request):
+    lst = WordSource.objects.all().order_by('-cnt')[0:25]
+    return render(request, 'ww/about.html', {'lst':lst})
 
 def list_source(request, source=None):
     """ list of sources """

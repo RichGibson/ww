@@ -10,11 +10,9 @@
 }
 .word-form-label {
     color: black !important;
-    font-size: 40%;
+    font-size: 75%;
 }
 .word-form-input {
-    width="10%";
-    min-width="50px";
 }
 
 .foo {

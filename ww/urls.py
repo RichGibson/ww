@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^show_source', views.show_source, name='show_source'),
     url(r'^show_word/(.+[^/])', views.show_word, name='show_word'),
     url(r'^show_word', views.show_word, name='show_word'),
+    url(r'^about', views.about, name='about'),
 
 
     url(r'^login/$', auth_views.login, name='login'),

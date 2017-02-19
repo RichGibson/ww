@@ -4,8 +4,14 @@ import re
 import pdb
 from django.db import models
 from django.utils import timezone
- 
 from django.utils.translation import ugettext_lazy as _
+
+from django.contrib.auth.models import User
+
+class UserWord(models.Model):
+    user = models.ForeignKey(User)
+    #user = models.ForeignKey(settings.auth_user_model)
+    word = models.ForeignKey('word')
 
 class Word(models.Model):
     word = models.CharField(max_length=255, blank=True)

@@ -1,18 +1,16 @@
 <!-- or navbar-inverse for white on black navbar -->
 <nav class="navbar navbar-default">
   <div class="container-fluid nav_ww">
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav ">
       <!--li class="active"><a href="#">Home</a></li -->
       <li><a href="/add_source">Add Words</a></li>
 
       <li><a href="/list_sources">Sources</a>
-
-      <li><a href="/admin/">Admin</a></li>
-    </ul>
+      <li><a href="/about">About</a>
 
 
-    <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
+        <li><a href="/admin/">Admin</a></li>
             <!-- li class="navbar-text">Welcome,<b> {{ request.user.username }}</b></li -->
             <li><a href="/logout/">Logout user {{ request.user.username }}</a></li>
         {% else %}
@@ -29,9 +27,7 @@
             -->
         {% endif %}
     </ul>
-  </div>
 
-  <div class="container-fluid nav_ww">
     <ul class="nav navbar-nav navbar-right">
         <li><form class="form-inline my-2 my-lg-0" method="post" action="/show_word">
         {% csrf_token %}
@@ -45,6 +41,11 @@
         </form>
         </li>
     </ul>
+
+
+  </div>
+
+  <div class="container-fluid nav_ww">
   </div>
 </nav>
 
