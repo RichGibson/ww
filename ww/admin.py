@@ -18,6 +18,7 @@ class UserWordAdmin(admin.ModelAdmin):
 
 @admin.register(Sentence)
 class SentenceAdmin(admin.ModelAdmin):
+    list_display = ("source", "sentence")
     #list_display = ( [f.name for f in Word._meta.get_fields()] )
     pass
 

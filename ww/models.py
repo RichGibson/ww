@@ -28,15 +28,6 @@ class Word(models.Model):
     def __str__(self):
         return self.word.encode('utf8')
 
-class Sentence(models.Model):
-    sentence = models.TextField(blank=True, null=True)
-    notes = models.TextField(blank=True, null=True)
-    created_date = models.DateTimeField(default=timezone.now)
-    updated_date = models.DateTimeField(blank=True, null=True)
-
-    def __str__(self):
-        return self.sentence.encode('utf-8')
-
 
 class WordSentence(models.Model):
     word = models.ForeignKey("word", null=True, )
@@ -76,6 +67,16 @@ class WordSource(models.Model):
         return "wordsource"
         #return "%s - %s" % (self.word, self.source.name.encode('utf8'))
  
+
+class Sentence(models.Model):
+    sentence = models.TextField(blank=True, null=True)
+    source = models.ForeignKey("source", blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
+    created_date = models.DateTimeField(default=timezone.now)
+    updated_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.sentence.encode('utf-8')
 
 
 

@@ -32,11 +32,11 @@ def loadWordText(raw, source_name, user):
     """
     take a text, add it...
     """
-    s=Source()
-    s.fulltext="".join(raw)
-    s.notes = "imported by data_word.py"
-    s.name=source_name
-    s.save()
+    S=Source()
+    S.fulltext="".join(raw)
+    S.notes = "imported by data_word.py"
+    S.name=source_name
+    S.save()
 
     lst = pattern.de.parse(raw)
     cnt=1
@@ -45,11 +45,12 @@ def loadWordText(raw, source_name, user):
         st=sent.string
         st=re.sub(" ([!?,.])",r'\1',st)
 
-        sentence=Sentence()
-        sentence.sentence=st
-        sentence.save()
+        SENTENCE=Sentence()
+        SENTENCE.sentence=st
+        SENTENCE.source=S
+        SENTENCE.save()
+
         words = sent.string.split()
-        print sentence
         for word in words:
             print "\tadding word ", word
             # is this a word?
@@ -70,7 +71,7 @@ def loadWordText(raw, source_name, user):
                 word_lst[word] = {'id':w, 'cnt':1}
 
             wsent = WordSentence()
-            wsent.sentence = sentence
+            wsent.sentence = SENTENCE
             wsent.word = w
             wsent.save()
 
@@ -83,7 +84,7 @@ def loadWordText(raw, source_name, user):
 
     for word in word_lst:
         ws = WordSource()
-        ws.source = s
+        ws.source = S
         ws.word = word_lst[word]['id']
         ws.cnt = word_lst[word]['cnt']
         ws.save()
