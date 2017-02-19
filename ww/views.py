@@ -174,14 +174,58 @@ def add_source(request):
 def show_word(request, word=None):
     """ Detail on one word """
     word_lst = []
-    word_lst = WordSource.objects.filter(word=word)
+    src_lst = []
+    prefix_search = ''
+    suffix_search = ''
+    mid_search = ''
+    if request.method == "POST":
+        #if POST.post
+        # prefix_search, mid_search, suffix_search
+        prefix_search = request.POST.get('prefix_search', '')
+        suffix_search = request.POST.get('suffix_search', '')
+        mid_search = request.POST.get('mid_search', '')
+
+        print >>sys.stderr, "len word_lst: ", len(word_lst)
+        word_lst = Word.objects.filter(word__iregex=r'^%s.*%s.*%s' % (prefix_search, mid_search, suffix_search) )
+        if prefix_search:
+            #word_lst = word_lst.filter(word__istartswith=prefix_search)
+            print >>sys.stderr, "prefix len word_lst: ", len(word_lst)
+
+        if suffix_search:
+            #word_lst = word_lst.filter(word__iendswith=suffix_search)
+
+            #word_lst = word_lst.filter(word__iregex=r'^%s.*%s.*%s' % (prefix_search, mid_search, suffix_search) )
+            print >>sys.stderr, "suffix len word_lst: ", len(word_lst)
+
+        if mid_search:
+            #word_lst = word_lst.filter(word__icontains=mid_search)
+            print >>sys.stderr, "mid len word_lst: ", len(word_lst)
+
+        print >>sys.stderr, "show word in list, prefix, suffix ", prefix_search, suffix_search
+        word_str = "Words matching %s-%s-%s" % (prefix_search, mid_search, suffix_search)
+    else:
+        if word:
+            src_lst = WordSource.objects.filter(word=word)
+            word_str=src_lst[0].word
+        else:
+            wrd_lst = WordSource.objects.all()
+            word_str=wrd_lst[0].word
+
     sentence_lst = []
     sentence_lst = WordSentence.objects.filter(word=word)
+
     # todo: maybe need a SentenceSource link
     # oh, also, I don't need to write this WordSentence type models - it is a many to many deal.
     title = "Show ", word
-    word = Word.objects.filter(id=word)[0].word
-    return render(request, 'ww/show_word.html', {"title":title, "word_lst":word_lst,"sentence_lst":sentence_lst, "word":word})
+
+    if len(word_lst) > 0:
+        pass
+    else:
+        #word = word_lst[0].word
+        pass
+
+    #word = Word.objects.filter(id=word)[0].word
+    return render(request, 'ww/show_word.html', {"title":title, "src_lst":src_lst, "word_lst":word_lst,"sentence_lst":sentence_lst, "word_str":word_str, "prefix_search":prefix_search, "suffix_search":suffix_search, "mid_search":mid_search})
 
 #@login_required
 def field_search(request, model):

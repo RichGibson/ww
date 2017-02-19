@@ -6,8 +6,10 @@
       <li><a href="/add_source">Add Words</a></li>
 
       <li><a href="/list_sources">Sources</a>
+
       <li><a href="/admin/">Admin</a></li>
     </ul>
+
 
     <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
@@ -25,8 +27,24 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
             -->
-    {% endif %}
-</ul>
+        {% endif %}
+    </ul>
+  </div>
+
+  <div class="container-fluid nav_ww">
+    <ul class="nav navbar-nav navbar-right">
+        <li><form class="form-inline my-2 my-lg-0" method="post" action="/show_word">
+        {% csrf_token %}
+        <label class="word-form-label" for="prefix_search">Words which<br>start: </label>
+            <input class="word-form-input form-control mr-sm-2" size=6 type="text" id="prefix_search" name="prefix_search" value="{{prefix_search}}" >
+            <label class="word-form-label" for="mid_search">have in<br>the middle</label>
+            <input class="word-form-input form-control mr-sm-2" size=6 type="text" id="mid_search" name="mid_search" value="{{mid_search}}" >
+            <label class="word-form-label" for="suffix_search">end<br>with</label>
+            <input class="word-form-input form-control mr-sm-2 " size=6 type="text" id="suffix_search" name="suffix_search" value="{{suffix_search}}" >
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Words</button>
+        </form>
+        </li>
+    </ul>
   </div>
 </nav>
 

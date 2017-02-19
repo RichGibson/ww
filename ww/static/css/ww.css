@@ -8,6 +8,15 @@
 .foobar {
     width: 50% !important;
 }
+.word-form-label {
+    color: black !important;
+    font-size: 40%;
+}
+.word-form-input {
+    width="10%";
+    min-width="50px";
+}
+
 .foo {
     white-space: nowrap;
     width: 1%;

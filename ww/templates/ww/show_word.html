@@ -8,10 +8,9 @@
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
     <h1><!-- { {title}} --></h1>
-    <h1> {{word}} 
-
-        <a href="http://dict.leo.org/#/search={{ word }}&searchLoc=0&resultOrder=basic&multiwordShowSingle=on" target="_new"><img src="http://dict.leo.org/img/favicons/ende-929f8e10.ico"></a>
-        <a href="http://translate.google.com/#de/en/{{ word }}" target="_new"><img src="http://google.com/favicon.ico" width="22" height="22"></a></h1>
+    <h1> {{word_str}} 
+        <a href="http://dict.leo.org/#/search={{ word_str }}&searchLoc=0&resultOrder=basic&multiwordShowSingle=on" target="_new"><img src="http://dict.leo.org/img/favicons/ende-929f8e10.ico"></a>
+        <a href="http://translate.google.com/#de/en/{{ word_str }}" target="_new"><img src="http://google.com/favicon.ico" width="22" height="22"></a></h1>
   </div>
 {% endblock %}
 
@@ -25,21 +24,40 @@
         } );
     </script>
 
+
     <table id="data" class="display table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <td>source</td>
-                <td>cnt</td>
-            </tr>
-        </thead>
-        <tbody>
-            {% for f in word_lst %}
-            <tr>
-                <td><a href="/show_source/{{ f.source.id }}">{{ f.source }}</a></td>
-                <td><a href="/show_source/{{ f.source.id}}">{{ f.cnt }}</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
+        {% if src_lst %}
+            <thead>
+                <tr>
+                    <td>source</td>
+                    <td>cnt</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for f in src_lst %}
+                <tr>
+                    <td><a href="/show_source/{{ f.source.id }}">{{ f.source }}</a></td>
+                    <td><a href="/show_source/{{ f.source.id}}">{{ f.cnt }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        {% else %}
+            <thead>
+                <tr>
+                    <td>word</td>
+                    <td>cnt</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for f in word_lst %}
+                <tr>
+                    <td><a href="/show_word/{{ f.id }}">{{ f.word }}</a></td>
+                    <td><a href="/show_word/{{ f.id}}">{{ f.cnt }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        {% endif %}
     </table>
     <h2>Sentences Using {{ word }}</h2>
     <ul>
