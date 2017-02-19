@@ -13,6 +13,10 @@ class UserWord(models.Model):
     #user = models.ForeignKey(settings.auth_user_model)
     word = models.ForeignKey('word')
 
+    def __str__(self):
+        return "%s - %s" % (self.user, self.word.word)
+        #return "%s - %s" % (self.user, self.word)
+
 class Word(models.Model):
     word = models.CharField(max_length=255, blank=True)
     plural = models.CharField(max_length=255, blank=True)

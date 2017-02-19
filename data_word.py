@@ -75,8 +75,8 @@ def loadWordText(raw, source_name, user):
             wsent.save()
 
             uw = UserWord()
-            uw.user = request.user 
-            uw.word =word
+            uw.user = user
+            uw.word =w
             uw.save()
 
             cnt+=1
@@ -114,7 +114,7 @@ def loadWordFile(file):
     user=user[0]
     loadWordText(raw, "file: %s " % file, user)
 
-    return words
+    return
 
 
 ####################################
