@@ -1,5 +1,10 @@
 Wordwander
 
+Next thoughts: 
+store an NLTK structure in Sources, keep words, wordsource
+but get rid of sentences and some of the other models.
+-basically expose nltk in a web interface
+
 docker-compose up
 #docker-compose run db psql -h db -U postgres
 (database postgres created by default)
